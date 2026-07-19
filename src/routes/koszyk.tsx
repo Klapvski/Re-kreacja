@@ -111,8 +111,7 @@ function KoszykPage() {
       if (mapContainerRef.current) {
         const widgetElement = document.createElement("inpost-geowidget")
         
-        widgetElement.setAttribute("token", "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJzQlpXVzFNZzVlQnpDYU1XU3JvTlBjRWFveFpXcW9Ua2FuZVB3X291LWxvIn0.eyJleHAiOjIwOTkyMzE3NDYsImlhdCI6MTc4Mzg3MTc0NiwianRpIjoiM2Y1M2RkN2YtMDY5Ny00YTVjLTk4ODItMDYzOGRjYTc3ZDllIiwiaXNzIjoiaHR0cHM6Ly9sb2dpbi5pbnBvc3QucGwvYXV0aC9yZWFsbXMvZXh0ZXJuYWwiLCJzdWIiOiJmOjEyNDc1MDUxLTFjMDMtNGU1OS1iYTBjLTJiNDU2OTVlZjUzNTpaOFRLUHFDd0xlZVdtR0M0OVpySW9jd21VZHhvYV9VVjVvQ3EwMmxfVThvIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoic2hpcHgiLCJzZXNzaW9uX3N0YXRlIjoiMDAyYTg2Y2QtNTA4YS00YzM3LWIxMzctYzcwMDg3NDdhMWQ0Iiwic2NvcGUiOiJvcGVuaWQgYXBpOmFwaXBvaW50cyIsInNpZCI6IjAwMmE4NmNkLTUwOGEtNGMzNy1iMTM3LWM3MDA4NzQ3YTFkNCIsImFsbG93ZWRfcmVmZXJyZXJzIjoiIiwidXVpZCI6ImVmMWIzN2Q4LWUyMzItNGQzYi04ZjUxLWI1NWI2NzEyYWIzNyJ9.UUcDxju-xneIw2DyfpF4eXfCjz9mb63bKyMCJv9OYoRbbVBdgxWpiXc7abiajEttuda-V32sILMM2_tgnCr8LmtQbfrDa3lV4pmSSOH7k_CHOfTAP5oV2EGauVA3PZe8DfmE477ioO9Ej9PEExLvmSrhnBbwKj3KWwp2AwXQSOb_agwgOP3fS9_HnUEzkG505SgseJoGVRjI_1Cf6YbQWIEGykjtv3WgwKIu_zInIJHUjDkWNNW8wV-LjuEVDgpoWaDoQzJNYvHCOwVk83cqXjFU9uRBMstkvoZIYnbMbA3uVh4OyZqNihJ6znK7DUS5JQMf8XgCOU_Pwl4Denc6sA")
-        widgetElement.setAttribute("language", "pl")
+        widgetElement.setAttribute("token", import.meta.env.VITE_INPOST_TOKEN);
         widgetElement.setAttribute("config", "parcelCollect")
         widgetElement.setAttribute("onpoint", "onInPostPointSelected")
 
