@@ -195,6 +195,6 @@ function getCategoryArtwork(name: string, slug: string) {
   if (key.includes("but") || key.includes("shoe")) return runningShoeImage;
   if (key.includes("spodni")) return spodnieImage;
   if (key.includes("torebk") || key.includes("bag") || key.includes("purse") || key.includes("handbag")) return parcelImage;
-
+  if (key.includes(" kg") || key.includes("kilogram") || key.includes("worek") || key.includes("hurt")) return parcelImage;
   return tShirtImage;
 }
