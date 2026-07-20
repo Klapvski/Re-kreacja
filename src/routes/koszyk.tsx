@@ -133,7 +133,7 @@ function KoszykPage() {
   }, [])
 
   const subtotal = cartItems.reduce((acc, item) => acc + (item.price * (item.quantity || 1)), 0)
-  const deliveryCost = cartItems.length > 0 ? 14.99 : 0
+  const deliveryCost = cartItems.length > 0 ? 22.50 : 0
   const total = subtotal + deliveryCost
 
   const handleRemoveItem = (index: number) => {
