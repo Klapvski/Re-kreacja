@@ -24,9 +24,9 @@ export function SiteFooter() {
         <div>
           <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Sklep</div>
           <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
-            <li>Odbiór osobisty</li>
-            <li>Kontakt telefoniczny</li>
-            <li>Godziny otwarcia</li>
+            <li>Odbiór osobisty Polkowice Skalników 50</li>
+            <li>Kontakt telefoniczny 48+ 537 933 624</li>
+            <li>Godziny otwarcia dostępne w Google Maps</li>
           </ul>
         </div>
       </div>
