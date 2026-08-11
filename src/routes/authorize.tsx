@@ -21,7 +21,6 @@ export const Route = createFileRoute("/authorize")({
 
 function AuthPage() {
   const navigate = useNavigate();
-  const [mode, setMode] = useState<"signin" | "signup">("signin");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [busy, setBusy] = useState(false);
@@ -38,19 +37,9 @@ function AuthPage() {
     try {
       const em = emailSchema.parse(email);
       const pw = passwordSchema.parse(password);
-      if (mode === "signup") {
-        const { error } = await supabase.auth.signUp({
-          email: em, password: pw,
-          options: { emailRedirectTo: `${window.location.origin}/admin` },
-        });
-        if (error) throw error;
-        toast.success("Konto utworzone. Możesz się zalogować.");
-        setMode("signin");
-      } else {
-        const { error } = await supabase.auth.signInWithPassword({ email: em, password: pw });
-        if (error) throw error;
-        navigate({ to: "/admin", replace: true });
-      }
+      const { error } = await supabase.auth.signInWithPassword({ email: em, password: pw });
+      if (error) throw error;
+      navigate({ to: "/admin", replace: true });
     } catch (err) {
       const msg = err instanceof z.ZodError
         ? "Sprawdź adres e-mail i hasło (min. 8 znaków)."
@@ -65,13 +54,9 @@ function AuthPage() {
     <SiteLayout>
       <div className="container-page flex justify-center py-16">
         <div className="w-full max-w-md rounded-3xl border border-border/60 bg-card p-8 shadow-[var(--shadow-soft)]">
-          <h1 className="font-display text-2xl font-semibold">
-            {mode === "signin" ? "Logowanie administratora" : "Utwórz konto administratora"}
-          </h1>
+          <h1 className="font-display text-2xl font-semibold">Logowanie administratora</h1>
           <p className="mt-1 text-sm text-muted-foreground">
-            {mode === "signin"
-              ? "Dostęp wyłącznie dla administratorów sklepu."
-              : "Pierwsze konto zostanie automatycznie oznaczone jako administrator."}
+            Dostęp wyłącznie dla administratorów sklepu.
           </p>
 
           <form onSubmit={submit} className="mt-6 space-y-4">
@@ -91,7 +76,7 @@ function AuthPage() {
               <input
                 type="password"
                 required
-                autoComplete={mode === "signin" ? "current-password" : "new-password"}
+                autoComplete="current-password"
                 minLength={8}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -99,17 +84,9 @@ function AuthPage() {
               />
             </div>
             <Button type="submit" disabled={busy} className="w-full rounded-full" size="lg">
-              {busy ? "Chwila…" : mode === "signin" ? "Zaloguj się" : "Utwórz konto"}
+              {busy ? "Chwila…" : "Zaloguj się"}
             </Button>
           </form>
-
-          <button
-            type="button"
-            onClick={() => setMode(mode === "signin" ? "signup" : "signin")}
-            className="mt-4 w-full text-center text-sm text-muted-foreground hover:text-primary"
-          >
-            {mode === "signin" ? "Nie masz jeszcze konta? Utwórz pierwsze konto administratora" : "Masz już konto? Zaloguj się"}
-          </button>
         </div>
       </div>
     </SiteLayout>
