@@ -7,14 +7,10 @@ export const Route = createFileRoute('/koszyk')({
   component: KoszykPage,
 })
 
-// Bezpieczny generator UUID działający na każdym IP i urządzeniu
-const generateSafeUUID = () => {
-  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-    const r = Math.random() * 16 | 0;
-    const v = c === 'x' ? r : (r & 0x3 | 0x8);
-    return v.toString(16);
-  });
-};
+// Generator ID zamówienia. Używamy crypto.randomUUID (kryptograficznie
+// bezpieczny generator liczb losowych z Web Crypto API) zamiast Math.random,
+// który nie jest bezpieczny i pozwala w teorii przewidzieć/odgadnąć ID.
+const generateSafeUUID = () => crypto.randomUUID();
 
 function KoszykPage() {
   const [cartItems, setCartItems] = useState<any[]>([])
@@ -287,3 +283,4 @@ declare global {
     onInPostPointSelected: (point: any) => void
   }
 }
+
